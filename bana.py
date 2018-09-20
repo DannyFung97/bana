@@ -176,7 +176,6 @@ def begin():
     global av_bananas
     global turn
     global bus_cost
-    '''
     if arr[0][1] > 999:
         print("You've Won the game! (", turn, " turns)")
         time.sleep(1)
@@ -188,13 +187,18 @@ def begin():
         else:
             wi()
     if stamina < 1:
-        print("You've lost the game due to starvation.")
-        time.sleep(1)
-        play = input("Do you want to play again? A=Yes/S=No")
-        if play == "A":
-            reset_game()
+        if ser[0][1] is True:
+            print("The clinic staff arrived and saved you from a horrible fate. (Stamina restored) (40 Gold lost)")
+            stamina = staminaCap
+            med_cost(40, False)
         else:
-            print("Okay, bye...")
+            print("You've lost the game due to starvation.")
+            time.sleep(1)
+            play = input("Do you want to play again? A=Yes/S=No")
+            if play == "A":
+                reset_game()
+            else:
+                print("Okay, bye...")
     if arr[0][1] < 0:
         print("You've lost the game due to financial loss.")
         time.sleep(1)
@@ -202,7 +206,7 @@ def begin():
         if play == "A":
             reset_game()
         else:
-            print("Okay, bye...")'''
+            print("Okay, bye...")
     inventory(False)
     print("Turn: ", turn, "| Stamina: ", stamina, "/", staminaCap)
     option = input("What do you want to do now? A=Pick/S=Inventory/D=Market/F=Finances/G=Nothing")
@@ -975,7 +979,7 @@ def bank():
             time.sleep(1)
             bmoi()
             bank()
-        elif o == "D":
+        elif o == D":
             print("Welcome to the Service Center!")
             time.sleep(1)
             services()
